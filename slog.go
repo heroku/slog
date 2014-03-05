@@ -1,7 +1,6 @@
-// Some Strcutred Logging Helpers
+// Package slog provides some Strcutred Logging helpers
 // ATM: Mostly used to hold some context for a http handler
 // and log at the end of a request
-
 package slog
 
 import (
