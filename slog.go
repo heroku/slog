@@ -1,6 +1,10 @@
 // Package slog provides some Strcutred Logging helpers
+//
 // ATM: Mostly used to hold some context for a http handler
 // and log at the end of a request
+//
+// Generally should provide the oposite of logfmt: https://github.com/kr/logfmt
+//
 package slog
 
 import (
@@ -59,7 +63,9 @@ func (c Context) String() string {
 	return strings.Join(parts, " ")
 }
 
-// Pushes count#what=value onto the context
+// Pushes count#what=value l2met formatted values
+// onto the context
+//
 // if count#what already exists in the context
 // value is added to it
 func (c Context) Count(what string, value int) {
@@ -71,17 +77,17 @@ func (c Context) Count(what string, value int) {
 	c[what] = value
 }
 
-// Pushes measure#what=value onto the context
+// Pushes measure#what=value l2met formatted values onto the context
 func (c Context) Measure(what string, value interface{}) {
 	c[fmt.Sprintf("measure#%s", what)] = value
 }
 
-// Pushes sample#what=value onto the context
+// Pushes sample#what=value l2met formatted values onto the context
 func (c Context) Sample(what string, value interface{}) {
 	c[fmt.Sprintf("sample#%s", what)] = value
 }
 
-// Pushes unique#what=value onto the context
+// Pushes unique#what=value l2met formatted values onto the context
 func (c Context) Unique(what string, value interface{}) {
 	c[fmt.Sprintf("unique#%s", what)] = value
 }
