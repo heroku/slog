@@ -11,7 +11,7 @@ Sample use in a http.HandleFunc
 	  start := time.Now()
 	  ctx := slog.Context{}
 	  defer func() { fmt.Printlng(ctx) }
-		defer func() { ctx.Measure("health.check.durtion", time.Since(start)) }
+    defer func() { ctx.Measure("health.check.durtion", time.Since(start)) }
 
 	  ctx.Count("health.check",1)
 	  ....stuff
