@@ -1,4 +1,6 @@
-// Some Strcutred Logging Help
+// Some Strcutred Logging Helpers
+// ATM: Mostly used to hold some context for a http handler
+// and log at the end of a request
 
 package slog
 
