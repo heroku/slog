@@ -10,7 +10,7 @@ Sample use in a http.HandleFunc
   http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
     start := time.Now()
     ctx := slog.Context{}
-    defer func() { fmt.Printlng(ctx) }
+    defer func() { fmt.Println(ctx) }
     defer func() { ctx.Measure("health.check.durtion", time.Since(start)) }
 
     ctx.Count("health.check",1)
