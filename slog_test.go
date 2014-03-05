@@ -87,6 +87,13 @@ func ExampleContext_add() {
 	// error=BOOM start=true
 }
 
+func ExampleContext_empty() {
+	fmt.Println(Context{"empty": ""})
+
+	//Output:
+	// empty=""
+}
+
 func ExampleContext_time() {
 	fmt.Println(Context{"now": time.Unix(0, 0).UTC()})
 

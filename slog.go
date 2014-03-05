@@ -56,6 +56,10 @@ func (c Context) String() string {
 			sv = fmt.Sprintf("%q", sv)
 		}
 
+		if sv == "" {
+			sv = `""`
+		}
+
 		// Assemble the final part and append it to the array
 		parts = append(parts, fmt.Sprintf("%s=%s", k, sv))
 	}
