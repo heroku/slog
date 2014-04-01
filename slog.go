@@ -49,14 +49,17 @@ func (c Context) String() string {
 		case time.Time: // Format times the way we want them
 			sv = v.(time.Time).Format(time.RFC3339Nano)
 		case time.Duration:
-			t := v.(time.Duration)
+			duration := v.(time.Duration)
 			switch {
-			case t < time.Microsecond:
-				sv = fmt.Sprintf("%.9fs", v.(time.Duration).Seconds())
-			case t < time.Millisecond:
-				sv = fmt.Sprintf("%.6fs", v.(time.Duration).Seconds())
+			//Less than a nanosecond, so just call it 0
+			case duration < time.Nanosecond:
+				sv = "0"
+			case duration < time.Microsecond:
+				sv = fmt.Sprintf("%.9f", duration.Seconds())
+			case duration < time.Millisecond:
+				sv = fmt.Sprintf("%.6f", duration.Seconds())
 			default:
-				sv = fmt.Sprintf("%.3fs", v.(time.Duration).Seconds())
+				sv = fmt.Sprintf("%.3f", duration.Seconds())
 			}
 		case int:
 			sv = fmt.Sprintf("%d", v.(int))

@@ -50,7 +50,11 @@ func ExampleContext_float64() {
 }
 
 func ExampleContext_duration() {
-	l := Context{"elapsed": time.Duration(time.Nanosecond)}
+	// No time
+	l := Context{"elapsed": time.Duration(time.Nanosecond * 0)}
+	fmt.Println(l)
+
+	l["elapsed"] = time.Duration(time.Nanosecond)
 	fmt.Println(l)
 
 	l["elapsed"] = time.Duration(time.Microsecond)
@@ -69,12 +73,13 @@ func ExampleContext_duration() {
 	fmt.Println(l)
 
 	//Output:
-	// elapsed=0.000000001s
-	// elapsed=0.000001s
-	// elapsed=0.001s
-	// elapsed=1.000s
-	// elapsed=1.200s
-	// elapsed=300.210s
+	// elapsed=0
+	// elapsed=0.000000001
+	// elapsed=0.000001
+	// elapsed=0.001
+	// elapsed=1.000
+	// elapsed=1.200
+	// elapsed=300.210
 }
 
 func ExampleContext_add() {
@@ -243,7 +248,7 @@ func TestMeasureSince(t *testing.T) {
 		t.Errorf("Expected a time.Duration, but value wasn't")
 	}
 
-	resultPattern := regexp.MustCompile(fmt.Sprintf("%s=\\d+\\.\\d+s", expectedKey))
+	resultPattern := regexp.MustCompile(fmt.Sprintf("%s=\\d+\\.\\d+", expectedKey))
 	result := fmt.Sprint(ctx)
 	if !resultPattern.MatchString(result) {
 		t.Errorf("Expected pattern not found in output: %s", result)
