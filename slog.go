@@ -1,4 +1,4 @@
-// Package slog provides some Strcutred Logging helpers
+// Package slog provides some Structred Logging helpers
 /*
 ATM: Mostly used to hold some context for a http handler
 and log at the end of a request
